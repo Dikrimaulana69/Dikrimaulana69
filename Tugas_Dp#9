@@ -1,0 +1,232 @@
+
+Array
+
+Array adalah tipe data yang berisi kumpulan dari beberapa nilai.
+Nilai yang terdapat dalam array disebut dengan elemen, dan pada setiap elemen memiliki nomor pengenal yang dikenal dengan istilah indeks
+Penomoran indeks di dalam array dimulai dari angka 0, sehingga elemen pertama berada di index 0, elemen kedua berada di indeks 1, sehingga dapat disimpulkan bahwa elemen yang ke n berada pada indeks n-1
+Ilustrasi Array
+
+Operasi Array
+1. Membuat Array
+#import library array sebagai alias
+
+import array as arr
+arr_int = arr.array('i',[10,20,30,40,90,80])
+
+print(arr_int)
+array('i', [10, 20, 30, 40, 90, 80])
+2. Mengakses Array
+pjg_array = len(arr_int)
+print("elemen array terakhir:",arr_int[pjg_array-1])
+
+#Looping mengakses nilai elemen tanpa mengetahui indeks
+for i in arr_int:
+    print(i)
+print('--------------------------------')  
+#looping mengakses nilai elemen dengan paramter indeks
+total = 0
+for j in range(pjg_array):
+    total = total + arr_int[j]
+    print(total)
+rata2 = total / pjg_array
+print(f"nilai rata-rata: {rata2}")
+elemen array terakhir: 80
+10
+20
+30
+40
+90
+80
+--------------------------------
+10
+30
+60
+100
+190
+270
+nilai rata-rata: 45.0
+3. Menambah Array
+posisi = 3
+nilai = 66
+arr_int.insert(posisi,nilai)
+print(arr_int)
+array('i', [10, 20, 30, 66, 40, 90, 80])
+4. Mengupdate Array
+arr_int[0] = 80
+print(arr_int)
+array('i', [80, 20, 30, 66, 40, 90, 80])
+5. Menghapus Array
+arr_int.remove(80)
+print(arr_int)
+
+arr_int.pop()
+print(arr_int)
+array('i', [20, 30, 66, 40, 90, 80])
+array('i', [20, 30, 66, 40, 90])
+6. Mencari Array
+arr_int.index(30)
+1
+Latihan Soal
+Sebuah kamar kost di daerah cisaat terdiri dari 1 lantai dan 10 kamar. Pemilik kost menandai kamar dengan tanda 'O' jika ada penghuninya dan tanda 'X' jika masih kosong. Reperesentasikan permasalahan tersebut dimana kamar yang sudah terisi adalah kamar 2,4,7 dan 9.
+#import library array
+
+#kamar=arr.array('u',[])
+#print(kamar)
+
+#kamar=arr.array('u',[])
+#for i in range(10):
+#  if i+1==2 or i+1==4 or i+1==7 or i+1==9:
+#    kamar.insert(i-1,'O')
+#  else:
+#    kamar.insert(i+1,'X')
+#print(kamar)
+
+import array as arr
+
+kamar = arr.array('u', [])
+jumlah_kamar = 10;
+
+for i in range(1, jumlah_kamar + 1):
+    if i == 2 or i == 4 or i == 7 or i == 9:
+        kamar.insert(i, 'O')
+    else:
+        kamar.insert(i, "X")
+        
+print(kamar)
+array('u', 'XOXOXXOXOX')
+Berdasarkan soal 1, hitunglah berapa jumlah kamar yang masih kosong dan sebutkan kamar nomor berapa saja!
+#Your Code here
+
+#for i in kamar:
+  
+#  nomor_yang_kosong=""
+#  jumlah=0
+#  for i in kamar:
+#    nomor -+=1
+#    if i==2 or i==2 or i==7 or i==9:
+#      kamar.insert(i-1,'O')
+#    else:
+#      kamar.insert(i-1,'X')
+# print(kamar)
+
+kamar_kosong = 0
+
+for k in range(len(kamar)):
+    if kamar[k] == 'X':
+        kamar_kosong += 1
+        print(f"kamar no. {k + 1} kosong")
+        
+print("jumlah kamar kosong: ", kamar_kosong)
+kamar no. 1 kosong
+kamar no. 3 kosong
+kamar no. 5 kosong
+kamar no. 6 kosong
+kamar no. 8 kosong
+kamar no. 10 kosong
+jumlah kamar kosong:  6
+Pada tahun 2022 pemilik kost ingin mengubah fungsi kamar kost menjadi rumah pribadi, sehingga kamar kost tersebut dirobohkan. Representasikan permasalahan tersebut kedalam fungsi array
+#Your code here
+
+for i in range(len(kamar)):
+    kamar.pop()
+
+print(kamar)
+array('u')
+Seorang penjual tahu menata raknya seperti berikut ini:
+[10,10,10,10,10,10,10,10,10,10]
+Setiap 1 tahu dijual dengan harga 1_000. Buatlah implementasi program yang mempunyai input uang dan jumlah tahu yang akan dibeli. Contoh input outputnya seperti berikut ini:
+input uang : 100_000
+jumlah tahu yang akan dibeli: 20
+
+Output:
+Total harga yang dibeli : 20_000
+Uang Kembali : 80_000
+Sisa Tahu : 80
+Posisi Akhir Rak : [0,0,10,10,10,10,10,10,10,10]
+
+import array as arr
+
+# membuat array yang berisikan jumlah tahu pada setiap rak
+meja_tahu = arr.array('i', [10,10,10,10,10,10,10,10,10,10])
+harga_tahu = 1_000
+
+# menghitung total tahu
+def totalTahu():
+    jumlah_tahu = 0
+    for rak_tahu in meja_tahu:
+        jumlah_tahu += rak_tahu
+        
+    return jumlah_tahu
+
+# function untuk membeli tahu
+# return total harga pembelian tahu
+def beliTahu(jumlah_beli_tahu, jumlah_uang):
+    total_tahu = totalTahu()
+    
+    # kalau total tahu yang dibeli melebihi stok, gagalkan pembelian
+    if jumlah_beli_tahu > total_tahu:
+        print("\n--Tahu kami tidak cukup--")
+        return 0
+    
+    # kalau uang pembeli kurang, gagalkan pembelian
+    harga_total_tahu = jumlah_beli_tahu * harga_tahu
+    if (jumlah_uang < harga_total_tahu):
+        print("\n--Uang kamu tidak cukup--")
+        return 0
+    
+    # mengurangi tahu pada rak
+    for index_rak in range(len(meja_tahu)):
+        # loop berhenti jika rak sudah dikurangi habis dengan jumlah beli
+        if jumlah_beli_tahu == 0:
+            break
+        
+        # kalau jumlah beli melebihi jumlah tahu pada rak
+        # habiskan tahu pada rak tersebut
+        # tapi jika tidak, kurangi tahu pada rak tersebut sesuai dengan jumlah beli
+        if meja_tahu[index_rak] - jumlah_beli_tahu < 0:
+            jumlah_beli_tahu -= meja_tahu[index_rak]
+            meja_tahu[index_rak] = 0
+        else:
+            meja_tahu[index_rak] -= jumlah_beli_tahu
+            jumlah_beli_tahu = 0
+            
+    # return harga total pembelian tahu
+    return harga_total_tahu
+        
+# loop program hingga tahu habis
+total_sisa_tahu = totalTahu()
+while (total_sisa_tahu > 0):
+    jumlah_uang = int(input("\nMasukan jumlah uang kamu: "))
+    jumlah_beli_tahu = int(input("Masukan jumlah tahu yang ingin dibeli: "))
+    
+    total_harga_pembelian = beliTahu(jumlah_beli_tahu, jumlah_uang)
+    total_kembalian = jumlah_uang - total_harga_pembelian
+    total_sisa_tahu = totalTahu()
+    
+    print("\nTotal harga yang dibeli: ", total_harga_pembelian)
+    print("Uang Kembali: ", total_kembalian)
+    print("Sisa Tahu: ", total_sisa_tahu)
+    print("Posisi akhir rak: ", list(meja_tahu))
+    
+    # berikan opsi pada user apakah ingin membeli lagi (jika masih ada stok tahu)
+    # jika tidak, program berhenti
+    if (total_sisa_tahu <= 0 or input("\nBeli lagi? ya/tidak: ") != 'ya'):
+        break
+    
+Masukan jumlah uang kamu: 100000
+Masukan jumlah tahu yang ingin dibeli: 55
+
+Total harga yang dibeli:  55000
+Uang Kembali:  45000
+Sisa Tahu:  45
+Posisi akhir rak:  [0, 0, 0, 0, 0, 5, 10, 10, 10, 10]
+
+Beli lagi? ya/tidak: ya
+Masukan jumlah uang kamu: 100000
+Masukan jumlah tahu yang ingin dibeli: 45
+
+Total harga yang dibeli:  45000
+Uang Kembali:  55000
+Sisa Tahu:  0
+Posisi akhir rak:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+ 
